@@ -1,0 +1,154 @@
+[gd_scene load_steps=11 format=3 uid="uid://dodtj58xq7pre"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_grn7x"]
+[ext_resource type="PackedScene" uid="uid://u5ebk58o8frm" path="res://objects/gun.tscn" id="2_dxs4p"]
+[ext_resource type="Texture2D" uid="uid://bun66fwmvvt8x" path="res://assets/crosshair.png" id="2_i6xeg"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3rmet"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_entfy"]
+
+[sub_resource type="Curve" id="Curve_iwxqy"]
+_data = [Vector2(0, 0.945455), 0.0, 0.0, 0, 0, Vector2(0.523985, 0.763636), 0.136869, 0.136869, 0, 0, Vector2(1, 0), -1.60423, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_asa3r"]
+curve = SubResource( "Curve_iwxqy" )
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_ijg1k"]
+direction = Vector3(0, 0, -1)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+scale_curve = SubResource( "CurveTexture_asa3r" )
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jch41"]
+shading_mode = 0
+specular_mode = 2
+disable_ambient_light = true
+albedo_color = Color(1, 0.835294, 0.0313726, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5hxof"]
+material = SubResource( "StandardMaterial3D_jch41" )
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Player" type="RigidDynamicBody3D"]
+collision_layer = 2
+input_ray_pickable = false
+physics_material_override = SubResource( "PhysicsMaterial_3rmet" )
+gravity_scale = 10.0
+lock_rotation = true
+script = ExtResource( "1_grn7x" )
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.441877, -0.0655057)
+cull_mask = 1048573
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -50)
+collide_with_areas = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Camera3D"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="Camera3D/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1024, 600)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Camera3D/SubViewportContainer/SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.441877, -0.0655057)
+cull_mask = 2
+
+[node name="gun_handle" type="Node3D" parent="Camera3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.537, -1.064, -1.575)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource( "CapsuleShape3D_entfy" )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HSlider" type="HSlider" parent="Control"]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 130.0
+offset_top = -176.0
+offset_right = -130.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 2.0
+step = 0.02
+value = 1.0
+metadata/_edit_layout_mode = 1
+
+[node name="Label" type="Label" parent="Control"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 46.0
+text = "60"
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( "2_i6xeg" )
+ignore_texture_size = true
+metadata/_edit_layout_mode = 1
+
+[node name="Label2" type="Label" parent="Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -33.0
+offset_right = 70.0
+offset_bottom = -7.0
+grow_vertical = 0
+text = "30 | 270"
+metadata/_edit_layout_mode = 1
+
+[node name="Button" type="Button" parent="Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = 23.0
+offset_right = 49.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESPAWN"
+metadata/_edit_layout_mode = 1
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.84602, 0)
+
+[node name="GunPos" parent="." instance=ExtResource( "2_dxs4p" )]
+transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 0, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="GunPos"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.134, 0.327123, -0.210584)
+emitting = false
+amount = 16
+local_coords = false
+process_material = SubResource( "ParticlesMaterial_ijg1k" )
+draw_pass_1 = SubResource( "BoxMesh_5hxof" )
+
+[connection signal="button_down" from="Control/Button" to="." method="_on_button_button_down"]

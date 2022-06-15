@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdtlvbguso61j"]
+
+[ext_resource type="Script" path="res://heightMap.gd" id="1_0ejbc"]
+[ext_resource type="Shader" path="res://shaders/heightMap.gdshader" id="1_8enop"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wwnw0"]
+shader = ExtResource( "1_8enop" )
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8berr"]
+
+[sub_resource type="NoiseTexture" id="NoiseTexture_l0m6j"]
+noise = SubResource( "FastNoiseLite_8berr" )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource( "ShaderMaterial_wwnw0" )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( "NoiseTexture_l0m6j" )
+ignore_texture_size = true
+script = ExtResource( "1_0ejbc" )

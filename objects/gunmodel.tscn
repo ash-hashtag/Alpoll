@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://u3sc2ba3pqij"]
+
+[ext_resource type="PackedScene" uid="uid://d3nqw7mij8gjx" path="res://assets/gun.glb" id="1_0tnn2"]
+
+[node name="gun" instance=ExtResource( "1_0tnn2" )]
+
+[node name="Sphere" parent="." index="0"]
+transform = Transform3D(0, 0, -0.697304, 0, 0.697304, 0, 0.965915, 0, 0, 0, 0, 0)
+layers = 2

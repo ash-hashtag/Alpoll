@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://88xkcm27j8kx"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_7mf63"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbkfl"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fmrkt"]
+material = SubResource( "StandardMaterial3D_wbkfl" )
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vpdrk"]
+
+[sub_resource type="Animation" id="Animation_43q73"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dnixe"]
+resource_name = "health_loss"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(2, 1.5, 1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_meier"]
+_data = {
+"RESET": SubResource( "Animation_43q73" ),
+"health_loss": SubResource( "Animation_dnixe" )
+}
+
+[node name="Enemy" type="RigidDynamicBody3D" groups=["enemy"]]
+collision_mask = 3
+script = ExtResource( "1_7mf63" )
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource( "CapsuleMesh_fmrkt" )
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource( "CapsuleShape3D_vpdrk" )
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30171, 0)
+pixel_size = 0.0142
+billboard = 1
+double_sided = false
+text = "200"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource( "AnimationLibrary_meier" )
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
