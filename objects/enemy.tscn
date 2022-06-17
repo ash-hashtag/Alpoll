@@ -2,13 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_7mf63"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbkfl"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_fmrkt"]
-material = SubResource( "StandardMaterial3D_wbkfl" )
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vpdrk"]
+radius = 0.322564
+height = 2.02781
 
 [sub_resource type="Animation" id="Animation_43q73"]
 length = 0.001
@@ -47,22 +43,27 @@ _data = {
 "health_loss": SubResource( "Animation_dnixe" )
 }
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wajes"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebahe"]
+shading_mode = 2
+albedo_color = Color(1, 0.0235294, 0, 1)
+
 [node name="Enemy" type="RigidDynamicBody3D" groups=["enemy"]]
 collision_mask = 3
+lock_rotation = true
 script = ExtResource( "1_7mf63" )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource( "CapsuleMesh_fmrkt" )
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730999, 0)
 shape = SubResource( "CapsuleShape3D_vpdrk" )
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30171, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82369, 0)
 pixel_size = 0.0142
 billboard = 1
 double_sided = false
-text = "200"
+text = "100"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -72,5 +73,10 @@ libraries = {
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.616, 0, 0, 0, 1.013, 0, 0, 0, 0.79, 0, 0.710316, 0)
+mesh = SubResource( "CapsuleMesh_wajes" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_ebahe" )
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

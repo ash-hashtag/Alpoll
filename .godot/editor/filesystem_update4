@@ -1,0 +1,9 @@
+res://objects/player.tscn
+res://objects/enemy.tscn
+res://objects/gun.tscn
+res://objects/Level0.tscn
+res://shaders/grid.tres
+res://scripts/levle0.gd
+res://scripts/gun_handler.gd
+res://scripts/gun.gd
+res://scripts/player.gd

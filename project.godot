@@ -8,64 +8,6 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "VisualShaderNodeCustom",
-"class": &"VisualShaderNodeAntiTiling3D",
-"language": &"GDScript",
-"path": "res://Shader/VisualShaderNodeAntiTiling3D.gd"
-}, {
-"base": "VisualShaderNodeCustom",
-"class": &"VisualShaderNodeDepthBlending3D",
-"language": &"GDScript",
-"path": "res://Shader/VisualShaderNodeDepthBlending3D.gd"
-}, {
-"base": "VisualShaderNodeCustom",
-"class": &"VisualShaderNodeNoisePerlin2D",
-"language": &"GDScript",
-"path": "res://Shader/VisualShaderNodeNoisePerlin2D.gd"
-}, {
-"base": "VisualShaderNodeCustom",
-"class": &"VisualShaderNodeSplatmapHeight3D",
-"language": &"GDScript",
-"path": "res://Shader/VisualShaderNodeSplatmapHeight3D.gd"
-}, {
-"base": "VisualShaderNodeCustom",
-"class": &"VisualShaderNodeTerrainGenerator3D",
-"language": &"GDScript",
-"path": "res://Shader/VisualShaderNodeTerrainGenerator3D.gd"
-}, {
-"base": "VisualShaderNodeCustom",
-"class": &"VisualShaderNodeTerrainMaterial3D",
-"language": &"GDScript",
-"path": "res://Shader/VisualShaderNodeTerrainMaterial3D.gd"
-}, {
-"base": "VisualShaderNodeCustom",
-"class": &"VisualShaderNodeTexturePack3D",
-"language": &"GDScript",
-"path": "res://Shader/VisualShaderNodeTexturePack3D.gd"
-}, {
-"base": "VisualShaderNodeCustom",
-"class": &"VisualShaderNodeTextureUnpack3D",
-"language": &"GDScript",
-"path": "res://Shader/VisualShaderNodeTextureUnpack3D.gd"
-}, {
-"base": "VisualShaderNodeCustom",
-"class": &"VisualShaderNodeUVMultiply3D",
-"language": &"GDScript",
-"path": "res://Shader/VisualShaderNodeUVMultiply3D.gd"
-}]
-_global_script_class_icons={
-"VisualShaderNodeAntiTiling3D": "",
-"VisualShaderNodeDepthBlending3D": "",
-"VisualShaderNodeNoisePerlin2D": "",
-"VisualShaderNodeSplatmapHeight3D": "",
-"VisualShaderNodeTerrainGenerator3D": "",
-"VisualShaderNodeTerrainMaterial3D": "",
-"VisualShaderNodeTexturePack3D": "",
-"VisualShaderNodeTextureUnpack3D": "",
-"VisualShaderNodeUVMultiply3D": ""
-}
-
 [application]
 
 config/name="Alpoll"

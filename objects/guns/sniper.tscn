@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm20xu68l4ira"]
+
+[ext_resource type="PackedScene" uid="uid://d0uionkul7pmm" path="res://objects/models/sniper.tscn" id="1_a4425"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="sniper" parent="." instance=ExtResource( "1_a4425" )]
